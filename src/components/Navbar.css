@@ -1,0 +1,158 @@
+/* Navbar.css */
+
+:root {
+  --primary-color: #007bff; /* Change this to your brand color */
+  --bg-color: #0f172a;      /* Dark background */
+  --nav-bg-scrolled: rgba(15, 23, 42, 0.95); /* Glassmorphism effect */
+  --text-color: #ffffff;
+  --text-hover: #60a5fa;
+  --font-family: 'Inter', sans-serif;
+}
+
+/* Base Navbar Styles */
+.navbar {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-family);
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  transition: all 0.3s ease-in-out;
+  background: var(--bg-color); /* Transparent at top */
+}
+
+/* Scrolled State (Added via JS) */
+.navbar.scrolled {
+  background: var(--nav-bg-scrolled);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  height: 70px; /* Slightly smaller on scroll */
+  backdrop-filter: blur(10px); /* Blur effect */
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+/* Logo Styling */
+.navbar-logo {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.logo-accent {
+  color: var(--primary-color);
+}
+
+/* Menu Links */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+/* Hover Underline Animation */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--text-hover);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* CTA Button Styling */
+.nav-cta-button {
+  padding: 10px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.nav-cta-button:hover {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* Mobile Menu Icon */
+.menu-icon {
+  display: none;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 1.8rem;
+}
+
+/* Responsive Design (Mobile) */
+@media screen and (max-width: 960px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh; /* Full screen height */
+    position: absolute;
+    top: -1000px; /* Hide top by default */
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    background: var(--bg-color);
+    padding-top: 100px; /* Space for close button */
+    gap: 40px;
+  }
+
+  .nav-menu.active {
+    top: 0;
+    left: 0;
+    opacity: 1;
+    z-index: -1; /* Behind the navbar container but visible */
+  }
+
+  .nav-link {
+    font-size: 1.5rem;
+  }
+  
+  .nav-cta-button {
+    width: 80%;
+    text-align: center;
+    font-size: 1.2rem;
+  }
+}
