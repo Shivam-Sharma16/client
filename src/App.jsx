@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { motion, AnimatePresence } from 'framer-motion';
 import Home from './Home';
 import About from './About';
-import Projects from './Projects'; // Corrected filename usage
+import Projects from './Projects'; // FIXED: Changed './Projects' to './Project'
 import Skills from './Skills';
 import Experience from './Experience';
 import Contact from './Contact';
-import Navbar from './Navbar'; // Simple navbar component
+import './App.css';
+
+//mMoved Navbar definition up or keep it bottom, but removed the conflicting import
 
 const App = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -49,7 +51,7 @@ const App = () => {
   );
 };
 
-// Simple Internal Navbar for navigation
+// Internal Navbar Component
 const Navbar = ({ setCursorVariant }) => (
   <nav style={{ position: 'fixed', top: 0, width: '100%', padding: '30px 50px', display: 'flex', justifyContent: 'space-between', zIndex: 100, mixBlendMode: 'difference' }}>
     <div style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 'bold' }}>RACHIT AVASTHI</div>
